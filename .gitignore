@@ -1,3 +1,5 @@
 .venv
 db.sqlite3
 screenstocks/frontend/node_modules
+node_modules
+test.py
