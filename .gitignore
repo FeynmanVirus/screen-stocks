@@ -1,0 +1,3 @@
+.venv
+db.sqlite3
+screenstocks/frontend/node_modules
