@@ -27,3 +27,7 @@ def cashflow(request, ticker):
     cashflow = data.cashflow.to_json(orient="table")
     cashflow = loads(cashflow)
     return Response(cashflow)
+
+@api_view(['GET'])
+def stock_lookup(request, input):
+    pass
