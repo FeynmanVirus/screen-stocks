@@ -1,9 +1,9 @@
 import './App.css';
 
 function App() {
-  const hello = 'Hello, Worl'
+  const hello = 'Hello, World'
   return (
-   <h1 className="underline">{hello}</h1> 
+   <h1 className="underlin text-xl">{hello}</h1> 
   );
 }
 
