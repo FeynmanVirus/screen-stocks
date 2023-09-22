@@ -4,6 +4,7 @@ from .serializers import *
 import yfinance as yf
 from django.core import serializers
 from json import loads, dumps
+import requests
 
 # Create your views here.
 
@@ -29,5 +30,13 @@ def cashflow(request, ticker):
     return Response(cashflow)
 
 @api_view(['GET'])
-def stock_lookup(request, input):
-    pass
+def stock_lookup(request, company_name):
+    yfinance = "https://query2.finance.yahoo.com/v1/finance/search"
+    user_agent = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36'
+    params = {"q": company_name, "quotes_count": 1, "country": "India"}
+
+    res = requests.get(url=yfinance, params=params, headers={'User-Agent': user_agent})
+    data = res.json()
+
+    company_code = data['quotes']
+    return Response(company_code)
