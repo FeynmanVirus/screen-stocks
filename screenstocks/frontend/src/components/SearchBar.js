@@ -29,10 +29,10 @@ export default function SearchBar() {
             </div>
             <ul className="bg-white border border-gray-100 w-4/5 ml-8 mt-2 overflow-hidden">
             {lookup ? lookup.map(stock => (
-            <Link to='financials' state={{ticker: stock.symbol}}><li key={stock.shortname} className=" py-1 border-b-2 border-gray-100  cursor-pointer hover:bg-blue-100 hover:text-gray-900">
+            <Link key={stock.symbol} to='financials' state={{ticker: stock.symbol}}><li className=" py-1 border-b-2 border-gray-100  cursor-pointer hover:bg-blue-100 hover:text-gray-900">
                 <span className="flex justify-between">{stock.shortname} <span>{stock.exchDisp}</span></span>
             </li></Link>
-        )) : console.log('null')}
+        )) : null}
             </ul>
         </form>
         </div>
