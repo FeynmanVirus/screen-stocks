@@ -27,13 +27,14 @@ export default function SearchBar() {
             </div>
                 <input type="search" value={query} onChange={(e) => setQuery(e.target.value)} id="default-search" className="block w-full p-4 pl-14 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search Here..." autoFocus autoComplete="off" required />
             </div>
-            <ul className="bg-white border border-gray-100 w-4/5 ml-8 mt-2 overflow-hidden">
+            {query ? 
+            <ul className="bg-white border rounded border-gray-100 w-4/5 ml-8 mt-2 p-2 overflow-hidden">
             {lookup ? lookup.map(stock => (
             <Link key={stock.symbol} to='financials' state={{ticker: stock.symbol}}><li className=" py-1 border-b-2 border-gray-100  cursor-pointer hover:bg-blue-100 hover:text-gray-900">
                 <span className="flex justify-between">{stock.shortname} <span>{stock.exchDisp}</span></span>
             </li></Link>
         )) : null}
-            </ul>
+            </ul> : null}
         </form>
         </div>
         </>
