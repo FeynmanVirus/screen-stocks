@@ -16,7 +16,28 @@ export default function BalanceSheet({ticker}) {
     }, [])
     return (
         <>
-        
+           <div className="financial-statement">
+                <table className="table">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th className="">2023</th>
+                            <th>2022</th>
+                            <th>2021</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                       {balanceSheet.map(field => (
+                        <tr className="" key={field['index']}>
+                            <td className="whitespace-nowrap px-3 py-2">{field['index']}</td>
+                            <td className="whitespace-nowrap px-3 py-2">{field['2023-03-31T00:00:00.000'] ? field['2023-03-31T00:00:00.000'] / 1000 : '_'}</td>
+                            <td className="whitespace-nowrap px-3 py-2">{field['2022-03-31T00:00:00.000'] ? field['2022-03-31T00:00:00.000'] / 1000 : '_'}</td>
+                            <td className="whitespace-nowrap px-3 py-2">{field['2021-03-31T00:00:00.000'] ? field['2021-03-31T00:00:00.000'] / 1000 : '_'}</td>
+                        </tr>
+                       ))} 
+                    </tbody>
+                </table>
+            </div> 
         </>
     )
 }
