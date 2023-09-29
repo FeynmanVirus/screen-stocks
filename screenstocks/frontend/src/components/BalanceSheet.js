@@ -17,16 +17,17 @@ export default function BalanceSheet({ticker}) {
                   .then(response => response.json())
                   .then(res => {
                     setSchema(res.schema['fields'])
-                    res['data'].map(field => {
-                        bal_sheet = OrganizeBalSheet(bal_sheet, field)
-                        setBalanceSheet(bal_sheet)
-                    })
+                    setBalanceSheet(res.data)
                   })
         }
         getBalSheet(ticker)
     }, [])
 
+   // ▼
 
+    function extendAssets(e) {
+        setAssets([balanceSheet[0]['Assets']])
+    }
 
     return (
         <>
@@ -44,7 +45,15 @@ export default function BalanceSheet({ticker}) {
                             ))} 
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody> 
+                        <tr className="even:bg-blue-white odd:bg-white" key={balanceSheet['Total Assets']}>
+                            <td>Total Assets <button className="text-blue-400 hover:text-blue-600" onClick={extendAssets}>+</button></td>
+                            {schema.map(date => (
+                                date['name'] !== 'index' ?
+                                <td className="whitespace-nowrap px-3 py-2 text-center">{(balanceSheet['Total Assets'][date['name']] / 10000000).toFixed(0) || "_"}</td>
+                                : null
+                            ))}
+                        </tr>
                         {/* <tr className="even:bg-blue-white odd:bg-white" key={field['index']}>
                             <td className="whitespace-nowrap px-3 py-2">{field['index']}</td>
                             {schema.map(date => (
