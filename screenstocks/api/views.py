@@ -40,15 +40,14 @@ def cashflow(request, ticker):
 
 @api_view(['GET'])
 def stock_lookup(request, company_name):
-    try:
-        yfinance = "https://query2.finance.yahoo.com/v1/finance/search"
-        user_agent = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36'
-        params = {"q": company_name, "quotes_count": 1, "country": "India"}
-
-        res = requests.get(url=yfinance, params=params, headers={'User-Agent': user_agent})
-        data = res.json()
-
-        company_code = data['quotes']
-        return Response(company_code)
-    except:
+    if company_name == '':
         return Response([])
+    yfinance = "https://query2.finance.yahoo.com/v1/finance/search"
+    user_agent = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36'
+    params = {"q": company_name, "quotes_count": 1, "country": "India"}
+
+    res = requests.get(url=yfinance, params=params, headers={'User-Agent': user_agent})
+    data = res.json()
+
+    company_code = data['quotes']
+    return Response(company_code)

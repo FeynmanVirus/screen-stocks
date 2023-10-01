@@ -26,6 +26,9 @@ export default function SearchBar() {
         } else if (e.keyCode === 40 && active < lookup.length - 1) {
             setActive(active + 1)
         } else if (e.keyCode === 13) {
+            if (e.target.value === '') {
+                return
+            }
             const symbol = document.getElementsByClassName('active')[0].dataset.ticker
             navigate('/financials', { state : { ticker: symbol } })
         }
